@@ -3,9 +3,18 @@ document.getElementById('copyBtn').addEventListener('click', async () => {
   const image = document.querySelector('img');
 
   try {
-    const response = await fetch(image.src, { mode: "cors" });
-    const blob = await response.blob();
-    const clipboardItem = new ClipboardItem({ [blob.type]: blob });
+    // Create a canvas to convert the image
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = image.naturalWidth;
+    canvas.height = image.naturalHeight;
+    
+    // Draw the image on canvas
+    ctx.drawImage(image, 0, 0);
+    
+    // Convert to PNG blob
+    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+    const clipboardItem = new ClipboardItem({ 'image/png': blob });
 
     await navigator.clipboard.write([clipboardItem]);
     status.innerHTML = "✅ Image copied to clipboard!";
