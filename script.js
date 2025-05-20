@@ -1,3 +1,16 @@
+// Get the current commit hash
+fetch('https://api.github.com/repos/anttijaakkola/teleportpaste-demo1/commits/main')
+  .then(response => response.json())
+  .then(data => {
+    const shortHash = data.sha.substring(0, 7);
+    const date = new Date(data.commit.author.date).toLocaleString();
+    document.getElementById('version').textContent = `Deployment: ${shortHash} (${date})`;
+  })
+  .catch(err => {
+    console.error('Failed to fetch commit info:', err);
+    document.getElementById('version').textContent = 'Version info unavailable';
+  });
+
 document.getElementById('copyBtn').addEventListener('click', async () => {
   const status = document.getElementById('status');
   const image = document.querySelector('img');
