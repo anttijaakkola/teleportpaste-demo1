@@ -5,16 +5,17 @@
   <title>TeleportPaste Demo</title>
   <style>
     body { font-family: sans-serif; text-align: center; margin-top: 3em; }
-    img { margin-top: 2em; max-width: 128px; }
+    img { margin-top: 2em; max-width: 200px; }
   </style>
 </head>
 <body>
   <h1>TeleportPaste Demo</h1>
   <p>Click the button to copy this image to your clipboard:</p>
   <button id="copyBtn">Copy Image</button>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/20190301_FIS_NWSC_Seefeld_Medal_Ceremony_850_6079_%28cropped%29.jpg" />
-  <p id="status"></p>
-
-  <script src="script.js"></script>
-</body>
-</html>
+  <img
+    id="targetImage"
+    crossorigin="anonymous"
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Wikipedia-logo.png/200px-Wikipedia-logo.png"
+    alt="Demo Image"
+  />
+  <p id="status"></
